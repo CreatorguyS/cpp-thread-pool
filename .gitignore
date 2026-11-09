@@ -1,0 +1,8 @@
+build/
+build_tsan/
+build_asan/
+*.o
+*.a
+*.so
+.vscode/
+compile_commands.json

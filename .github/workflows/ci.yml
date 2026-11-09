@@ -1,0 +1,28 @@
+name: C++ ThreadPool CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Compiler
+        run: sudo apt-get update && sudo apt-get install -y g++ make
+
+      - name: Build & Run Unit Tests
+        run: make test
+
+      - name: Run ThreadSanitizer (TSan)
+        run: make tsan
+
+      - name: Run AddressSanitizer (ASan)
+        run: make asan
+
+      - name: Run Performance Benchmark
+        run: make bench
